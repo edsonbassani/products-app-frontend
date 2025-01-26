@@ -1,7 +1,7 @@
 <header *ngIf="isLoggedIn">
   <div class="content">
     <div class="left-side">
-      <h1>Hello, {{ username }}</h1>
+      <h1>{{title}} {{ username }}</h1>
       <button (click)="logout()" class="logout-btn">Logout</button>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
