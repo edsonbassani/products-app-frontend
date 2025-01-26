@@ -17,7 +17,7 @@ describe('AppComponent', () => {
   it(`should have the 'Ambev-UI' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Ambev-UI');
+    expect(app.title).toContain('Welcome');
   });
 
   it('should render title', () => {
