@@ -2,22 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProductsService } from '../../core/services/products.service';
+import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-products',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  products: any[] = [];
-  newProduct = { name: '', price: 0, active: true };
-  searchTerm: string = '';
-  currentPage: number = 1;
-  pageSize: number = 10;
-  totalItems: number = 0;
-  totalPages: number = 0;
+  products: Product[] = []; // Use the Product interface
+  newProduct: Partial<Product> = { name: '', price: 0, active: true }; // Initialize as Partial<Product>
+  searchTerm = '';
+  currentPage = 1;
+  pageSize = 10;
+  totalItems = 0;
+  totalPages = 0;
+  errorMessage = '';
 
   constructor(private productsService: ProductsService) {}
 
@@ -30,42 +32,55 @@ export class ProductsComponent implements OnInit {
       .getProducts(this.searchTerm, 'Name', false, this.currentPage, this.pageSize)
       .subscribe({
         next: (data) => {
-          this.products = data.data.products;
-          this.totalItems = data.data.totalItems;
+          const productData = data?.data || { products: [], totalItems: 0 };
+          this.products = productData.products;
+          this.totalItems = productData.totalItems;
           this.totalPages = Math.ceil(this.totalItems / this.pageSize);
+          this.errorMessage = ''; // Clear error messages on success
         },
         error: (err) => {
           console.error('Error fetching products:', err);
-        }
+          this.errorMessage = 'Failed to load products. Please try again later.';
+        },
       });
   }
 
   addProduct() {
-    this.productsService.addProduct(this.newProduct).subscribe({
+    if (!this.newProduct.name || (this.newProduct.price && this.newProduct.price <= 0)) {
+      this.errorMessage = 'Product name and price are required.';
+      return;
+    }
+  
+    this.productsService.addProduct(this.newProduct as Product).subscribe({
       next: () => {
         this.loadProducts();
         this.newProduct = { name: '', price: 0, active: true };
+        this.errorMessage = ''; // Clear errors on success
       },
       error: (err) => {
         console.error('Error adding product:', err);
-      }
+        this.errorMessage = 'Failed to add product. Please try again later.';
+      },
     });
   }
 
   deactivateProduct(id: string) {
+    // Deactivate a product
     this.productsService.deactivateProduct(id).subscribe({
-      next: () => this.loadProducts(),
+      next: () => this.loadProducts(), // Reload products after deactivating
       error: (err) => {
-        console.error('Error deleting product:', err);
-      }
+        console.error('Error deactivating product:', err);
+        this.errorMessage = 'Failed to deactivate product. Please try again later.';
+      },
     });
   }
 
   changePage(newPage: number) {
-    if (newPage > 0 && newPage <= this.totalPages) {
-      this.currentPage = newPage;
-      this.loadProducts();
+    if (newPage < 1 || newPage > this.totalPages) {
+      return; // Prevent invalid page changes
     }
+    this.currentPage = newPage;
+    this.loadProducts();
   }
 
   searchProducts() {
