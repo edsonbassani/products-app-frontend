@@ -10,7 +10,28 @@ It consumes the backend API and offers functionalities such as authentication an
 - **Angular Forms**  
 - **JWT Authentication**  
 - **Standalone Components**
-  
+
+## Features
+- **Authentication**
+  - Login screen with field validation.
+  - Storage of the JWT token in localStorage.
+  - Interceptor to include the token in the header of all HTTP requests.
+- **Products**
+  - Product listing with pagination and filters.
+  - Create, edit, and delete products.
+
+## Project Structure
+- src/app/core: Services and interceptors for authentication.
+- src/app/features: Functionality modules, such as Login and Products.
+- src/app/shared: Reusable components and utilities.
+
+## Tests
+- Initial implementation of unit tests for the components and services.
+
+## Pipeline CI/CD
+The repository contains a basic pipeline configured in GitHub Actions for build automation and testing.
+
+
 ## Configuration and execution
 
 ### 1. Clone Repo
@@ -88,9 +109,12 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
 
+## Screenshots
 
+### Login Screen
 ![image](https://github.com/user-attachments/assets/9c8b0e54-4a5d-4995-b82e-61d9ae7dcbeb)
 
+### Products Screen
 ![image](https://github.com/user-attachments/assets/9d81ca33-511a-4009-b459-30a586afbf8a)
 
 
