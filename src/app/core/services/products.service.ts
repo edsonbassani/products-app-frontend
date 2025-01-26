@@ -1,46 +1,53 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, shareReplay } from 'rxjs';
+import { ApiResponse } from '../../models/api-response.model';
+import { Product } from '../../models/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
   private readonly apiUrl = 'https://localhost:7181/api/Products';
 
   constructor(private http: HttpClient) {}
 
-  getProducts(searchTerm?: string, sortBy: string = 'Name', sortDescending: boolean = false,
-    page: number = 1, pageSize: number = 10): Observable<any> {
-
+  // Get products with type safety
+  getProducts(
+    searchTerm?: string,
+    sortBy = 'Name',
+    sortDescending = false,
+    page = 1,
+    pageSize = 10
+  ): Observable<ApiResponse> {
     let params = new HttpParams()
       .set('page', page.toString())
-      .set('pageSize', pageSize.toString());
+      .set('pageSize', pageSize.toString())
+      .set('sortBy', sortBy)
+      .set('sortDescending', sortDescending.toString());
 
     if (searchTerm) {
       params = params.set('searchTerm', searchTerm);
     }
 
-    if (sortBy) {
-      params = params.set('sortBy', sortBy);
-    }
-
-    params = params.set('sortDescending', sortDescending.toString());
-
-    return this.http.get<any>(this.apiUrl, { params }).pipe(
-      shareReplay(1)
+    // Ensure the response is strongly typed with `ApiResponse`
+    return this.http.get<ApiResponse>(this.apiUrl, { params }).pipe(
+      shareReplay(1) // Cache the response to optimize performance
     );
   }
 
-  addProduct(product: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, product);
+  // Add a new product
+  addProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.apiUrl, product);
   }
 
-  updateProduct(id: string, product: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${id}`, product);
+  // Update an existing product
+  updateProduct(id: string, product: Partial<Product>): Observable<Product> {
+    return this.http.put<Product>(`${this.apiUrl}/${id}`, product);
   }
 
-  deactivateProduct(id: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${id}`, null);
+  // Deactivate a product
+  deactivateProduct(id: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/${id}`, null);
   }
 }

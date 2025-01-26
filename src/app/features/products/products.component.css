@@ -188,3 +188,9 @@ h1, h2 {
 .search-btn:hover {
   background-color: #0056b3;
 }
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 10px;
+}
