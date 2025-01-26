@@ -1,6 +1,36 @@
-# AmbevUI
+# Products App Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+This project is the frontend of the **Products App**, developed with **Angular 19** using **Standalone Components**. 
+It consumes the backend API and offers functionalities such as authentication and product management.
+
+## Tech Stack
+- **Angular 19**
+- **RxJS**
+- **Bootstrap**  
+- **Angular Forms**  
+- **JWT Authentication**  
+- **Standalone Components**
+  
+## Configuration and execution
+
+### 1. Clone Repo
+```bash
+git clone https://github.com/edsonbassani/products-app-frontend.git
+cd products-app-frontend
+```
+
+### 2. Install Dependencies
+```bash
+npm install
+```
+
+### 3. Environment setup
+```bash
+export const environment = {
+  production: false,
+  apiUrl: 'https://localhost:7181/api'
+};
+```
 
 ## Development server
 
@@ -57,7 +87,6 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
 
 
 ![image](https://github.com/user-attachments/assets/9c8b0e54-4a5d-4995-b82e-61d9ae7dcbeb)
