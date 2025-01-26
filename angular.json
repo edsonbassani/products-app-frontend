@@ -97,6 +97,10 @@
               "src/tsconfig.app.json",
               "src/tsconfig.spec.json"
             ],
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
