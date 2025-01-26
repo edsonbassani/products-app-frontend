@@ -1,0 +1,116 @@
+::ng-deep body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.login-container {
+  padding: 20px 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  display: inline-block;
+  width: 80px; /* Adjust width for proper alignment */
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  text-align: right; /* Align label text to the right */
+  margin-right: 10px; /* Spacing between label and input */
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  flex: 1; /* Makes input take remaining space */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+}
+
+h2 {
+  text-align: center;
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 20px; /* Space below the heading */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Spacing between form elements */
+}
+
+label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #555;
+  text-align: left; /* Align labels to the left */
+}
+
+input:focus {
+  border-color: #007bff; /* Highlight border on focus */
+}
+
+button {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #cccccc; /* Gray background for disabled state */
+  cursor: not-allowed;
+}
+
+.error {
+  color: #e74c3c; /* Red color for error messages */
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  input, button {
+    font-size: 14px;
+  }
+}

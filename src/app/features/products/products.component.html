@@ -1,0 +1,61 @@
+
+<h2>Add New Product</h2>
+<form (ngSubmit)="addProduct()" class="product-form">
+  <input
+    [(ngModel)]="newProduct.name"
+    name="name"
+    placeholder="Name"
+    required
+  />
+  <input
+    [(ngModel)]="newProduct.price"
+    name="price"
+    type="number"
+    placeholder="Price"
+    required
+  />
+  <button type="submit">Add</button>
+</form>
+
+<h2>Products List</h2>
+
+<!-- Search Bar -->
+<div class="search-container">
+  <input
+    [(ngModel)]="searchTerm"
+    type="text"
+    placeholder="Search by name"
+    class="search-input"
+  />
+  <button (click)="searchProducts()" class="search-btn">Search</button>
+</div>
+
+<table class="product-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.name }}</td>
+      <td class="centered-cell">{{ product.price | currency }}</td>
+      <td class="centered-cell">
+        <button class="delete-btn" (click)="deactivateProduct(product.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Pagination Controls -->
+<div class="pagination">
+  <button [disabled]="currentPage === 1" (click)="changePage(currentPage - 1)">
+    Previous
+  </button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button [disabled]="currentPage === totalPages" (click)="changePage(currentPage + 1)">
+    Next
+  </button>
+</div>
