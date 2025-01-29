@@ -3,6 +3,10 @@
 This project is the frontend of the **Products App**, developed with **Angular 19** using **Standalone Components**. 
 It consumes the backend API and offers functionalities such as authentication and product management.
 
+![Build Status](https://img.shields.io/github/actions/workflow/status/edsonbassani/products-app-frontend/angular.yml?label=Lint)
+![Build Status](https://img.shields.io/github/actions/workflow/status/edsonbassani/products-app-frontend/angular.yml?label=Build)
+![Build Status](https://img.shields.io/github/actions/workflow/status/edsonbassani/products-app-frontend/angular.yml?label=Tests)
+
 ## Tech Stack
 - **Angular 19**
 - **RxJS**
