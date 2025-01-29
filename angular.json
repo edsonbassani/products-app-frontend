@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Ambev-UI": {
+    "Developerevaluation-UI": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ambev-ui",
+            "outputPath": "dist/developerevaluation-ui",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -59,10 +59,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Ambev-UI:build:production"
+              "buildTarget": "Developerevaluation-UI:build:production"
             },
             "development": {
-              "buildTarget": "Ambev-UI:build:development"
+              "buildTarget": "Developerevaluation-UI:build:development"
             }
           },
           "defaultConfiguration": "development"
